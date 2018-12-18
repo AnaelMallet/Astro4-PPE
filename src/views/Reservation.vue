@@ -1,16 +1,15 @@
 <template>
     <v-app>
-        <Header/>
-        <Reservation/>
+        <header/>
     </v-app>
 </template>
 
 <script>
     import Header from '@/components/Header'
-    import Reservation from "./components/Reservation";
+    import EnTete from "./components/en-tete";
     export default {
         name: 'app',
-        components: {Header, Reservation},
+        components: {Header, EnTete},
     }
 
 </script>
