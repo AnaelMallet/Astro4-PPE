@@ -2,9 +2,9 @@
     <v-app class="grey lighten-2">
         <h1 class="font blue--text text--darken-4">Se connecter en tant que:</h1>
         <div class="centre">
-            <v-btn small class="blue darken-4 white--text entantque reag align cli">Client</v-btn>
-            <v-btn small class="blue darken-4 white--text entantque reag align art">Artiste</v-btn>
-            <v-btn small class="blue darken-4 white--text entantque reag align">Intervenant</v-btn>
+            <v-btn small class="blue darken-4 white--text entantque reag align cli" v-on:click="goCli()">Client</v-btn>
+            <v-btn small class="blue darken-4 white--text entantque reag align art" v-on:click="goArt()">Artiste</v-btn>
+            <v-btn small class="blue darken-4 white--text entantque reag align" v-on:click="goInt()">Intervenant</v-btn>
             <v-btn small class="blue darken-4 white--text entantque reag align retour" v-on:click="goMain()">Retour</v-btn>
         </div>
     </v-app>
@@ -15,7 +15,19 @@
         methods: {
             goMain() {
                 this.$router.replace('/')
-            }
+            },
+
+            goCli() {
+                this.$router.replace('connexion/client')
+            },
+
+            goArt() {
+                this.$router.replace('connexion/artiste')
+            },
+
+            goInt() {
+                this.$router.replace('connexion/intervenant')
+            },
         }
     }
 </script>

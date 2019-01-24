@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Accueil'
 import EnTantQue from './views/En-Tant-Que'
+import Client from './views/Connexion.vue'
+import Artiste from './views/Connexion.vue'
+import Intervenant from './views/Connexion.vue'
 
 Vue.use(Router)
 
@@ -18,6 +21,21 @@ export default new Router({
       path: '/connexion',
       name: 'connexion',
       component: EnTantQue
+    },
+    {
+      path: '/connexion/client',
+      name: 'client',
+      component: Client
+    },
+    {
+      path: '/connexion/artiste',
+      name: 'artiste',
+      component: Artiste
+    },
+    {
+      path: '/connexion/intervenant',
+      name: 'intervenant',
+      component: Intervenant
     }
   ]
 })
