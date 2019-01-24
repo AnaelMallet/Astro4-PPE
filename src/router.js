@@ -5,6 +5,7 @@ import EnTantQue from './views/En-Tant-Que'
 import Client from './views/Connexion.vue'
 import Artiste from './views/Connexion.vue'
 import Intervenant from './views/Connexion.vue'
+import Inscription from './views/Inscription'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/connexion/intervenant',
       name: 'intervenant',
       component: Intervenant
+    },
+    {
+      path: '/inscription',
+      name: 'inscription',
+      component: Inscription
     }
   ]
 })

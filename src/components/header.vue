@@ -1,8 +1,8 @@
 <template>
     <v-app class="app">
         <v-toolbar class="blue darken-4">
-            <v-btn small class ="grey lighten-2" v-on:click="GoConn">Connexion</v-btn>
-            <v-btn small class ="grey lighten-2" >Inscription</v-btn>
+            <v-btn small class ="grey lighten-2" v-on:click="GoConn()">Connexion</v-btn>
+            <v-btn small class ="grey lighten-2" v-on:click="GoInscr()">Inscription</v-btn>
         </v-toolbar>
         <div>
             <v-parallax height="250"
@@ -18,11 +18,14 @@
         methods: {
             GoConn() {
                 this.$router.replace('/connexion')
+            },
+
+            GoInscr() {
+                this.$router.replace('/inscription')
             }
         }
     }
 </script>
-
 
 <style>
     .h1 {
