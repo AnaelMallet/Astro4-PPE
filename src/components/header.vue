@@ -1,7 +1,7 @@
 <template>
     <v-app class="app">
         <v-toolbar class="blue darken-4">
-            <v-btn small class ="grey lighten-2" >Connexion</v-btn>
+            <v-btn small class ="grey lighten-2" v-on:click="GoConn">Connexion</v-btn>
             <v-btn small class ="grey lighten-2" >Inscription</v-btn>
         </v-toolbar>
         <div>
@@ -12,6 +12,17 @@
         </div>
     </v-app>
 </template>
+
+<script>
+    export default {
+        methods: {
+            GoConn() {
+                this.$router.replace('/connexion')
+            }
+        }
+    }
+</script>
+
 
 <style>
     .h1 {

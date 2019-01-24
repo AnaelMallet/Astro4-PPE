@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Accueil from './views/Accueil.vue'
+import Home from './views/Accueil'
+import EnTantQue from './views/En-Tant-Que'
 
 Vue.use(Router)
 
@@ -11,7 +12,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Accueil
+      component: Home
+    },
+    {
+      path: '/connexion',
+      name: 'connexion',
+      component: EnTantQue
     }
   ]
 })
