@@ -10,6 +10,7 @@
         </v-toolbar>
         <div class="grey lighten-2 div">
             <Manif/>
+            <Manif/>
         </div>
         <en-tete/>
     </v-app>

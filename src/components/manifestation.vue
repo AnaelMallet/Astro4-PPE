@@ -1,5 +1,5 @@
 <template>
-    <div class="div grey elevation-5">
+    <div class="div grey elevation-5" v-on:click="GoEvent()">
         <v-card>
             <v-card-title class="title">test</v-card-title>
         </v-card>
@@ -9,7 +9,11 @@
 <script>
 
     export default {
-        
+        methods: {
+            GoEvent() {
+                this.$router.replace('/evenement')
+            }
+        }
     }
 </script>
 

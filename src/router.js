@@ -6,6 +6,7 @@ import Client from './views/Connexion.vue'
 import Artiste from './views/Connexion.vue'
 import Intervenant from './views/Connexion.vue'
 import Inscription from './views/Inscription'
+import InfoEvent from './views/Info-Event'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/inscription',
       name: 'inscription',
       component: Inscription
+    },
+    {
+      path: '/evenement',
+      name: 'evenement',
+      component: InfoEvent,
     }
   ]
 })
