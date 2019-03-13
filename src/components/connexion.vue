@@ -29,7 +29,7 @@
         </div>
         <v-dialog v-model="dialog" max-width="450">
             <v-card>
-                <v-card-title v-if="connexion_state === 'wrong' || connexion_state === 'not_client' || connexion_state === 'not_artist'" class="red lighten-1">
+                <v-card-title v-if="connexion_state === 'wrong' || connexion_state === 'not_client' || connexion_state === 'not_artist' || connexion_state === 'not_contributor'" class="red lighten-1">
                     <h1>Erreur</h1>
                     <v-btn class="grey lighten-2 close-btn" v-on:click="dialog = false">Réessayer</v-btn>
                 </v-card-title>
@@ -40,6 +40,7 @@
                     <h3 v-if="connexion_state === 'wrong'">votre mot de passe ou votre login est incorrecte</h3>
                     <h3 v-else-if="connexion_state === 'not_client'">Vous n'êtes pas enregistré en tant que client</h3>
                     <h3 v-else-if="connexion_state === 'not_artist'">Vous n'êtes pas enregistré en tant qu'artiste</h3>
+                    <h3 v-else-if="connexion_state === 'not_contributor'">Vous n'êtes pas enregistré en tant qu'intervenant</h3>
                     <h3 v-else>bienvenue</h3>
                 </v-card-text>
                 <v-card-actions v-if="connexion_state === ''">
@@ -110,6 +111,10 @@
                     fetch('http://localhost/astro4/api.php?action=' + action + '&login=' + login + '&password=' + password)
                     .then(response => {
                         return response.json()
+                    })
+                    .then((data) => {
+                        this.connexion = data.is_valid
+                        this.connexion_state = data.non_valid_reason
                     })
                 }
                 this.dialog = true
