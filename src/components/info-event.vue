@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <h1 class = "name">Nom de l'évenement</h1>
+        <h1 class = "name"></h1>
         <div class = "image grey lighten-2">
             <img/>
         </div>
@@ -18,7 +18,7 @@
             <v-rating
         half-increments
         hover
-        :length="10"
+        :length="5"
         color= "yellow darken-4"
     ></v-rating>
             <comment class = "comment elevation-12"/>

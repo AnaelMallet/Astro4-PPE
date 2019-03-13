@@ -14,19 +14,19 @@
     export default {
         methods: {
             GoMain() {
-                this.$router.replace('/')
+                this.$router.push('/')
             },
 
             GoCli() {
-                this.$router.replace('connexion/client')
+                this.$router.push('connexion/client')
             },
 
             GoArt() {
-                this.$router.replace('connexion/artiste')
+                this.$router.push('connexion/artiste')
             },
 
             GoInt() {
-                this.$router.replace('connexion/intervenant')
+                this.$router.push('connexion/intervenant')
             },
         }
     }

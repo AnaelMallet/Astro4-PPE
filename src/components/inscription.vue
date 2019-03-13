@@ -5,42 +5,53 @@
             <div class="text">
                 <v-form v-model="valid">
                     <v-text-field
-                            :rules="[rules.required, rules.max, rules.min]"
+                            v-model="name"
+                            :rules="NameRules"
                             color="blue darken-4"
                             label="Nom"
                     ></v-text-field>
                     <v-text-field
+                            v-model="first_name"
                             color="blue darken-4"
-                            :rules="[rules.required, rules.max, rules.min]"
+                            :rules="FirstnameRules"
                             label="Prénom"
                     ></v-text-field>
                     <v-text-field
+                            v-model="phone"
                             color="blue darken-4"
-                            :rules="[rules.required, rules.maxPhone]"
+                            :rules="PhoneRules"
                             label="n° de téléphone"
                     ></v-text-field>
                     <v-text-field
+                            v-model="mail"
                             color="blue darken-4"
-                            :rules="[rules.required, rules.Mail]"
+                            :rules="MailRules"
                             label="E-Mail"
                     ></v-text-field>
                     <v-text-field
+                            v-model="login"
                             color="blue darken-4"
-                            :rules="[rules.required, rules.max, rules.min]"
+                            :rules="LoginRules"
                             label="Login"
                     ></v-text-field>
                     <v-text-field
                             color="blue darken-4"
                             v-model="password"
-                            :append-icon="pwd ? 'visibility_off' : 'visibility'"
+                            :append-icon="pwd ? 'visibility' : 'visibility_off'"
                             :type="pwd ? 'text' : 'password'"
-                            :rules="[rules.required, rules.max, rules.min]"
+                            :rules="PasswordRules"
                             label="Mot de passe"
                             @click:append="pwd = !pwd"
                     ></v-text-field>
+                    <v-text-field
+                            color="blue darken-4"
+                            v-model="age"
+                            :rules="AgeRules"
+                            label="Votre age"
+                    ></v-text-field>
                 </v-form>
                 <div class="btn_place">
-                    <v-btn class="blue darken-4 white--text btn_conn">Se Connecter</v-btn>
+                    <v-btn class="blue darken-4 white--text btn_conn" v-on:click="Register('register', name, first_name, phone, mail, login, password, age)" :disabled="!valid">S'inscrire</v-btn>
                     <v-btn class="blue darken-4 white--text" v-on:click="GoMain()">Annuler</v-btn>
                 </div>
             </div>
@@ -50,25 +61,61 @@
 
 <script>
     export default {
-        data () {
-            return {
-                pwd: false,
-                setup:"phone",
-                rules: {
-                    required: value => !!value || 'valeur requise',
-                    max: value => value.length <= 32 || 'saisie supérieur à 32 caractères',
-                    min: value => value.length >= 10 || 'saisie inférieur à 10 caractères',
-                    maxPhone: value => value.length <= 10 || 'saisie supérieur à 10 chiffres',
-                    Mail: value => {
-                        const patterne = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                        return patterne.test(value) || 'Adresse mail invalide'
-                    }
-                }
-            }
-        },
+        data: () => ({
+            valid: false,
+            name:"",
+            first_name:"",
+            phone:"",
+            mail:"",
+            login:"",
+            password:"",
+            age: 0,
+            pwd: false,
+            NameRules: [
+                value => !!value || 'Valeur requise'
+            ],
+
+            FirstnameRules: [
+                value => !!value || 'Valeur requise'
+            ],
+
+            PhoneRules: [
+                value => !!value || 'Valeur requise',
+                value => value.length <= 10 || 'Le numéro de téléphone doit être composé de moins de 10 chiffres',
+                value => /^[0]/.test(value) || 'Le numéro de tépéhone doit commencé par un 0',
+                value => /^[0-9]*$/.test(value) || 'seulement les chiffres sont autorisés'
+            ],
+
+            MailRules: [
+                value => !!value || 'Valeur requise',
+                value => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || 'Adresse mail invalide'
+            ],
+
+            LoginRules: [
+                value => !!value || 'valeur requise'
+            ],
+
+            PasswordRules: [
+                value => !!value || 'valeur requise'
+            ],
+
+            AgeRules: [
+                value => !!value || 'valeur requise',
+                value => /^[0-9]*$/.test(value) || 'seulement les chiffres sont autorisés',
+                value => value <= 120 || 'votre age ne peut pas être supérieur a 120',
+                value => value >= 18 || 'vous devez être majeur pour vous inscrire'
+            ]
+        }),
         methods: {
             GoMain() {
-                this.$router.replace('/')
+                this.$router.push('/')
+            },
+
+            Register(action, name, first_name, phone, mail, login, password, age) {
+                fetch('http://localhost/astro4/api.php?action=' + action + '&nom=' + name + '&prenom=' + first_name + '&phone=' + phone + '&mail=' + mail + '&login=' + login + '&password=' + password + '&age=' + age)
+                .then(response => {
+                    return response.json()
+                })
             }
         }
     }

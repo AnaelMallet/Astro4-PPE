@@ -2,14 +2,14 @@
 <v-container>
     <div class = "username">
         <p class = "font">
-            nom de l'user
+            nom de l'utilisateur
         </p>
     </div>
     <v-rating class = "rating"
         readonly
         half-increments
         hover
-        :length="10"
+        :length="5"
         color= "yellow darken-4"
     ></v-rating>
     <div class = "text">
