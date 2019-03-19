@@ -1,13 +1,14 @@
 <template>
     <v-app class="app">
         <v-toolbar class="blue darken-4">
-            <v-btn small class ="grey lighten-2">Connexion</v-btn>
-            <v-btn small class ="grey lighten-2">Inscription</v-btn>
+            <v-menu></v-menu>
+            <v-btn small class ="grey lighten-2" v-on:click="GoConn()">Connexion</v-btn>
+            <v-btn small class ="grey lighten-2" v-on:click="GoInscr()">Inscription</v-btn>
+            <v-btn small class ="grey lighten-2" v-on:click="GoCons()">Consultation</v-btn>
         </v-toolbar>
         <div>
             <v-parallax height="250"
-                        src="https://img1.science-et-vie.com/var/scienceetvie/storage/images/article/la-vie-sur-terre-est-elle-venue-de-l-espace-7388/31832-1-fre-FR/La-vie-sur-Terre-est-elle-venue-de-l-espace_exact1024x768_l.jpg">
-                <h1 class="display-3 font-weight-regular mb-auto black--text h1">Astro4</h1>
+                        src="https://hdfondsdecran.com/image/201609/338/espace-profond-hyperespace-pourpre.jpg">
             </v-parallax>
         </div>
     </v-app>
@@ -15,7 +16,18 @@
 
 <script>
     export default {
-        name: "Header"
+        methods: {
+            GoConn() {
+                this.$router.push('/connexion')
+            },
+
+            GoInscr() {
+                this.$router.push('/inscription')
+            },
+            GoCons(){
+                this.$router.push('/consultation')
+            }
+        }
     }
 </script>
 
@@ -25,6 +37,6 @@
     }
 
     .app {
-        height: 306px;
+        height: 300px;
     }
 </style>

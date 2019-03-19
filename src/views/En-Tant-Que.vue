@@ -1,16 +1,14 @@
 <template>
     <v-app>
-        <inscription/>
+        <EnTantQue/>
         <EnTete/>
     </v-app>
 </template>
 
 <script>
-    import Inscription from '../components/inscription'
     import EnTete from '../components/en-tete'
-
+    import EnTantQue from '../components/en-tant-que'
     export default {
-        name: 'app',
-        components: {Inscription, EnTete},
+        components: {EnTantQue, EnTete}
     }
 </script>

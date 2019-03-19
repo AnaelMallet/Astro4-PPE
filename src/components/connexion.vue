@@ -2,29 +2,28 @@
     <v-app class=" grey lighten-2">
         <div class="center">
             <h1 class="font blue--text text--darken-4">Connexion:</h1>
-            <div class = "text">
+            <div class="text">
                 <v-form v-model="valid">
                     <v-text-field
                             color="blue darken-4"
-                            v-model="name"
-                            :rules="nameRules"
-                            :counter="50"
                             label="Login"
+                            v-model="login"
+                            :rules="LoginRules"
                             required
                     ></v-text-field>
                     <v-text-field
                             color="blue darken-4"
-                            v-model="password"
-                            :append-icon="show1 ? 'visibility_off' : 'visibility'"
-                            :type="show1 ? 'text' : 'password'"
-                            :counter="50"
+                            v-model="mdp"
+                            :append-icon="pwd ? 'visibility_off' : 'visibility'"
+                            :rules="PasswordRules"
+                            :type="pwd ? 'text' : 'password'"
                             label="Mot de passe"
-                            @click:append="show1 = !show1"
+                            @click:append="pwd = !pwd"
                     ></v-text-field>
                 </v-form>
                 <div class="btn_place">
-                    <v-btn class="blue darken-4 white--text btn_conn">Se Connecter</v-btn>
-                    <v-btn class="blue darken-4 white--text">Annuler</v-btn>
+                    <v-btn class="blue darken-4 white--text btn_conn" :disabled="!valid" v-on:click="Login('login', login, mdp)">Se Connecter</v-btn>
+                    <v-btn class="blue darken-4 white--text" v-on:click="GoConn()">Annuler</v-btn>
                 </div>
             </div>
         </div>
@@ -33,13 +32,34 @@
 
 <script>
     export default {
-        name: "connexion"
+        data: () => ({
+            pwd: false,
+            valid: false,
+            login: "",
+            mdp: "",
+            id: 0,
+            PasswordRules: [
+                value => !!value || 'valeur requise'
+            ],
+
+            LoginRules: [
+                value => !!value || 'valeur requise'
+            ]
+        }),
+
+        methods: {
+            GoConn() {
+                this.$router.push('/connexion')
+            },
+
+
+        }
     }
 </script>
 
 <style scoped>
     .text {
-        margin: 50px 100px 0px 100px;
+        margin: 50px 100px 0 100px;
     }
 
     .center {
@@ -59,9 +79,5 @@
         font-size: 40px;
         text-decoration: underline;
         text-align: center;
-    }
-
-    .bordure {
-        border: 1px solid black;
     }
 </style>

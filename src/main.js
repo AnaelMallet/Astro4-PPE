@@ -2,12 +2,12 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
-import i18n from './i18n'
+//import VueSession from 'vue-session'
 
 Vue.config.productionTip = false
+//Vue.use(VueSession)
 
 new Vue({
   router,
-  i18n,
   render: h => h(App)
 }).$mount('#app')

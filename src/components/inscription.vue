@@ -2,60 +2,57 @@
     <v-app class=" grey lighten-2">
         <div class="center">
             <h1 class="font blue--text text--darken-4">Inscription:</h1>
-            <div class = "text">
+            <div class="text">
                 <v-form v-model="valid">
                     <v-text-field
-                            color="blue darken-4"
                             v-model="name"
-                            :rules="nameRules"
-                            :counter="50"
+                            :rules="NameRules"
+                            color="blue darken-4"
                             label="Nom"
-                            required
                     ></v-text-field>
                     <v-text-field
+                            v-model="first_name"
                             color="blue darken-4"
-                            v-model="name"
-                            :rules="nameRules"
-                            :counter="50"
+                            :rules="FirstnameRules"
                             label="Prénom"
-                            required
                     ></v-text-field>
                     <v-text-field
+                            v-model="phone"
                             color="blue darken-4"
-                            v-model="name"
-                            :rules="nameRules"
-                            :counter="50"
+                            :rules="PhoneRules"
                             label="n° de téléphone"
-                            required
                     ></v-text-field>
                     <v-text-field
+                            v-model="mail"
                             color="blue darken-4"
-                            v-model="email"
-                            :rules="[rules.required, rules.email]"
+                            :rules="MailRules"
                             label="E-Mail"
-                            required
                     ></v-text-field>
                     <v-text-field
+                            v-model="login"
                             color="blue darken-4"
-                            v-model="name"
-                            :rules="nameRules"
-                            :counter="50"
+                            :rules="LoginRules"
                             label="Login"
-                            required
                     ></v-text-field>
                     <v-text-field
                             color="blue darken-4"
                             v-model="password"
-                            :append-icon="show1 ? 'visibility_off' : 'visibility'"
-                            :type="show1 ? 'text' : 'password'"
-                            :counter="50"
+                            :append-icon="pwd ? 'visibility' : 'visibility_off'"
+                            :type="pwd ? 'text' : 'password'"
+                            :rules="PasswordRules"
                             label="Mot de passe"
-                            @click:append="show1 = !show1"
+                            @click:append="pwd = !pwd"
+                    ></v-text-field>
+                    <v-text-field
+                            color="blue darken-4"
+                            v-model="age"
+                            :rules="AgeRules"
+                            label="Votre age"
                     ></v-text-field>
                 </v-form>
                 <div class="btn_place">
-                    <v-btn class="blue darken-4 white--text btn_conn">Se Connecter</v-btn>
-                    <v-btn class="blue darken-4 white--text">Annuler</v-btn>
+                    <v-btn class="blue darken-4 white--text btn_conn" v-on:click="Register('register', name, first_name, phone, mail, login, password, age)" :disabled="!valid">S'inscrire</v-btn>
+                    <v-btn class="blue darken-4 white--text" v-on:click="GoMain()">Annuler</v-btn>
                 </div>
             </div>
         </div>
@@ -64,22 +61,79 @@
 
 <script>
     export default {
-        name: "connexion"
+        data: () => ({
+            valid: false,
+            name:"",
+            first_name:"",
+            phone:"",
+            mail:"",
+            login:"",
+            password:"",
+            age: 0,
+            pwd: false,
+            NameRules: [
+                value => !!value || 'Valeur requise'
+            ],
+
+            FirstnameRules: [
+                value => !!value || 'Valeur requise'
+            ],
+
+            PhoneRules: [
+                value => !!value || 'Valeur requise',
+                value => value.length <= 10 || 'Le numéro de téléphone doit être composé de moins de 10 chiffres',
+                value => /^[0]/.test(value) || 'Le numéro de tépéhone doit commencé par un 0',
+                value => /^[0-9]*$/.test(value) || 'seulement les chiffres sont autorisés'
+            ],
+
+            MailRules: [
+                value => !!value || 'Valeur requise',
+                value => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || 'Adresse mail invalide'
+            ],
+
+            LoginRules: [
+                value => !!value || 'valeur requise'
+            ],
+
+            PasswordRules: [
+                value => !!value || 'valeur requise'
+            ],
+
+            AgeRules: [
+                value => !!value || 'valeur requise',
+                value => /^[0-9]*$/.test(value) || 'seulement les chiffres sont autorisés',
+                value => value <= 120 || 'votre age ne peut pas être supérieur a 120',
+                value => value >= 18 || 'vous devez être majeur pour vous inscrire'
+            ]
+        }),
+        methods: {
+            GoMain() {
+                this.$router.push('/')
+            },
+
+            Register(action, name, first_name, phone, mail, login, password, age) {
+                fetch('http://localhost/astro4/api.php?action=' + action + '&nom=' + name + '&prenom=' + first_name + '&phone=' + phone + '&mail=' + mail + '&login=' + login + '&password=' + password + '&age=' + age)
+                .then(response => {
+                    return response.json()
+                })
+            }
+        }
     }
 </script>
 
 <style scoped>
     .text {
-        margin: 50px 100px 0px 100px;
+        margin: 50px 100px 0 100px;
     }
 
     .center {
         margin-bottom: -500px;
-        margin-top: 300px;
+        margin-top: 200px;
     }
 
     .btn_place {
         margin-top: 30px;
+        margin-left: -10px;
     }
 
     .btn_conn {
@@ -90,9 +144,5 @@
         font-size: 40px;
         text-decoration: underline;
         text-align: center;
-    }
-
-    .bordure {
-        border: 1px solid black;
     }
 </style>

@@ -1,4 +1,4 @@
-# test_vueJS
+# astro4
 
 ## Project setup
 ```

@@ -1,20 +1,3 @@
 <template>
-    <v-app>
-        <Header/>
-        <Reservation/>
-    </v-app>
+  <router-view/>
 </template>
-
-<script>
-    import Header from '@/components/Header'
-    import Reservation from "./components/Reservation";
-    export default {
-        name: 'app',
-        components: {Header, Reservation},
-    }
-
-</script>
-
-<style scoped>
-
-</style>
