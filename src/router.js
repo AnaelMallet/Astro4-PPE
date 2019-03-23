@@ -48,6 +48,7 @@ export default new Router({
       path: '/evenement',
       name: 'evenement',
       component: InfoEvent,
+      props: true
     }
   ]
 })

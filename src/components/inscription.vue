@@ -56,12 +56,32 @@
                 </div>
             </div>
         </div>
+        <v-dialog v-model="dialog" max-width="500">
+            <v-card>
+                <v-card-title v-if="register" class="green">
+                    <h1>Vous êtes maintenant enregistré(e)</h1>
+                </v-card-title>
+                <v-card-title v-else class="green">
+                    <h1>Inscription</h1>
+                </v-card-title>
+                <v-card-text>
+                    <h3 v-if="register">Vous êtes maintenant enregistré(e) sur notre site</h3>
+                    <v-form>
+                        <v-checkbox v-model="checkbox" :label="'Se connecter dés maitenant'"></v-checkbox>
+                    </v-form>
+                </v-card-text>
+                <v-card-actions v-if="register">
+                    <v-btn class="grey lighten-2 close-btn" v-on:click="GoMain()">Revenir au menu</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-app>
 </template>
 
 <script>
     export default {
         data: () => ({
+            dialog: false,
             valid: false,
             name:"",
             first_name:"",
@@ -69,8 +89,10 @@
             mail:"",
             login:"",
             password:"",
-            age: 0,
+            age: null,
             pwd: false,
+            register: false,
+            checkbox: false,
             NameRules: [
                 value => !!value || 'Valeur requise'
             ],
@@ -108,13 +130,24 @@
         }),
         methods: {
             GoMain() {
+                if (this.checkbox)
+                {
+                    this.$session.start()
+                    this.$session.set('person', 'client')
+                    this.$session.set('name', this.login)
+                }
                 this.$router.push('/')
             },
 
             Register(action, name, first_name, phone, mail, login, password, age) {
                 fetch('http://localhost/astro4/api.php?action=' + action + '&nom=' + name + '&prenom=' + first_name + '&phone=' + phone + '&mail=' + mail + '&login=' + login + '&password=' + password + '&age=' + age)
                 .then(response => {
+                    console.log(response)
                     return response.json()
+                })
+                .then(data => {
+                    this.dialog = true
+                    this.register = data.register
                 })
             }
         }

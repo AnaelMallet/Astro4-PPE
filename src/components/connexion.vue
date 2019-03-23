@@ -1,7 +1,7 @@
 <template class="">
     <v-app class=" grey lighten-2">
         <div class="center">
-            <h1 class="font blue--text text--darken-4">Connexion:</h1>
+            <h1 class="font text--darken-4">Connexion:</h1>
             <div class="text">
                 <v-form v-model="valid">
                     <v-text-field
@@ -91,6 +91,17 @@
                     .then((data) => {
                         this.connexion = data.is_valid
                         this.connexion_state = data.non_valid_reason
+                        if (this.connexion)
+                        {
+                            if (this.$session.exists())
+                            {
+                                this.$session.destroy()
+                            }
+
+                            this.$session.start()
+                            this.$session.set('person', 'client')
+                            this.$session.set('name', login)
+                        }
                     })
                 }
                 if (this.$route.path === "/connexion/artiste")
@@ -103,6 +114,18 @@
                     .then((data) => {
                         this.connexion = data.is_valid
                         this.connexion_state = data.non_valid_reason
+                        if (this.connexion)
+                        {
+                            if (this.$session.exists())
+                            {
+                                this.$session.destroy()
+                            }
+
+                            this.$session.start()
+                            this.$session.set('person', 'artist')
+                            this.$session.set('name', login)
+
+                        }
                     })
                 }
                 if (this.$route.path === "/connexion/intervenant")
@@ -115,6 +138,17 @@
                     .then((data) => {
                         this.connexion = data.is_valid
                         this.connexion_state = data.non_valid_reason
+                        if (this.connexion)
+                        {
+                            if (this.$session.exists())
+                            {
+                                this.$session.destory()
+                            }
+
+                            this.$session.start()
+                            this.$session.set('person', 'contributor')
+                            this.$session.set('name', login)
+                        }
                     })
                 }
                 this.dialog = true

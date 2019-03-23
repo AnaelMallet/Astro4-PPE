@@ -30,6 +30,7 @@
 
         mounted() {
             this.GetEventData('all')
+            console.log(this.$session.getAll())
         },
 
         methods: {
@@ -39,7 +40,6 @@
                     return response.json()
                 })
                 .then((data) => {
-                    console.log(data.event)
                     this.events_data = data.event
                 })
             }
