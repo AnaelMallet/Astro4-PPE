@@ -30,6 +30,7 @@
 
         mounted() {
             this.GetEventData('all')
+            console.log(this.$session.getAll())
         },
 
         methods: {

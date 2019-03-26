@@ -6,21 +6,12 @@
         </div>
         <div class = "event_text">
             <p>
-                texte de l'evenement
+                text de l'evenement
             </p>
         </div>
         <div class = "event_comment">
-            <textarea class = "comment_field"
-                cols="60"
-                rows="5"
-                placeholder="votre commentaire..."
-            ></textarea>
-            <v-rating
-        half-increments
-        hover
-        :length="5"
-        color= "yellow darken-4"
-    ></v-rating>
+            <textarea class = "comment_field" cols="60" rows="5" placeholder="votre commentaire..."></textarea>
+            <v-rating half-increments hover :length="5" color= "yellow darken-4"></v-rating>
             <comment class = "comment elevation-12"/>
             <comment class = "comment elevation-12"/>
             <comment class = "comment elevation-12"/>
@@ -32,7 +23,7 @@
     import comment from '../components/commentaire'
 
 export default {
-    components: {comment}
+    components: {comment},
 }
 </script>
 

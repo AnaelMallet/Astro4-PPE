@@ -48,11 +48,7 @@ export default new Router({
       path: '/evenement',
       name: 'evenement',
       component: InfoEvent,
-    },
-    {
-      path: '/consultation',
-      name: 'consultation',
-      component: Consultation,
+      props: true
     }
   ]
 })

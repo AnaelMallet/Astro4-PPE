@@ -7,36 +7,36 @@
                 v-model="dialog"
                 max-width="500"
             >
-            <v-card>
-                <v-card-title class = "card-title blue darken-4 elevation-10">
-                    <h1>Réservation</h1>
-                    <v-btn class="grey lighten-2 close-btn" v-on:click ="dialog = false">Fermer</v-btn>
-                    </v-card-title>
-                <v-card-text>
-                    <v-text-field
-                        counter= 1
-                        label="nombre de personnes"
-                        :rules="[rules.number]"
-                    >
-                    </v-text-field>
-                    <v-radio-group v-model="BookMode" :mandatory="false">
-                        <v-radio
-                            color="blue darken-4"
-                            label="Payement à l'unité (12€)"
-                            value= "payement"
-                        ></v-radio>
-                        <v-radio
-                            color="blue darken-4"
-                            label="Payement par abonnement (45€*)"
-                            value= "abonnement"
-                        ></v-radio>
-                    </v-radio-group>
-                    <small>*pour un abonnement de 5 manifestations au choix</small>
-                </v-card-text>
-                <v-card-actions>
-                    <v-btn class="grey lighten-2 submit-btn" v-on:click ="dialog = false">réserver</v-btn>
-                </v-card-actions>
-            </v-card>
+                <v-card>
+                    <v-card-title class = "card-title blue darken-4 elevation-10">
+                        <h1>Réservation</h1>
+                        <v-btn class="grey lighten-2 close-btn" v-on:click ="dialog = false">Fermer</v-btn>
+                        </v-card-title>
+                    <v-card-text>
+                        <v-text-field
+                            counter= 1
+                            label="nombre de personnes"
+                            :rules="[rules.number]"
+                        >
+                        </v-text-field>
+                        <v-radio-group v-model="BookMode" :mandatory="false">
+                            <v-radio
+                                color="blue darken-4"
+                                label="Payement à l'unité (12€)"
+                                value= "payement"
+                            ></v-radio>
+                            <v-radio
+                                color="blue darken-4"
+                                label="Payement par abonnement (45€*)"
+                                value= "abonnement"
+                            ></v-radio>
+                        </v-radio-group>
+                        <small>*pour un abonnement de 5 manifestations au choix</small>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-btn class="grey lighten-2 submit-btn" v-on:click ="dialog = false">réserver</v-btn>
+                    </v-card-actions>
+                </v-card>
             </v-dialog>
         </v-toolbar>
         <InfoEvent/>
