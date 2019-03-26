@@ -1,9 +1,13 @@
 <template>
-<v-app>
-    <header/>
-    <Manif/>
-    <en-tete/>
-</v-app>
+    <v-app>
+        <Header/>
+        <v-toolbar class="blue darken-4 elevation-12">
+            <h1 class="white--text">Mes réservations</h1>
+        </v-toolbar>
+        <div class="grey lighten-2 div">
+        <Manif v-for="(event, index) in event_data" :key="index" :event_name="event.nom_event" :event_image="event.img_event"/>
+        </div>
+    </v-app>
 </template>
 
 <script>
@@ -30,7 +34,7 @@ export default {
             })
             .then((data) => {
                 console.log(data.event)
-                this.events_data = data.event
+                this.event_data = data.event
             })
         }
     }
