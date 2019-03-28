@@ -11,7 +11,7 @@
         <div class="grey lighten-2 div">
             <Manif v-for="(event, index) in events_data" :key="index" :event_name="event.nom" :event_image="event.image"/>
         </div>
-        <en-tete/>
+        <EnTete/>
     </v-app>
 </template>
 

@@ -8,6 +8,7 @@
             <v-btn small class ="grey lighten-2" v-on:click="Disconnect()" v-if="this.$session.exists()">Déconnexion</v-btn>
             <v-btn small class ="grey lighten-2" v-on:click="GoConn()" v-else>Connexion</v-btn>
             <v-btn small class ="grey lighten-2" v-on:click="GoInscr()" v-if="!this.$session.exists()">Inscription</v-btn>
+            <v-btn small class ="grey lighten-2 MainBtn" v-on:click="GoMain()" v-if="this.$route.path !== '/'">Accueil</v-btn>
         </v-toolbar>
         <div>
             <v-parallax height="250"
@@ -50,6 +51,10 @@
             Disconnect() {
                 this.$session.destroy()
                 this.disconnect = true
+            },
+
+            GoMain() {
+                this.$router.push('/')
             }
         }
     }
@@ -66,5 +71,9 @@
 
     .menu {
         margin-right: 15px;
+    }
+
+    .MainBtn{
+        right: -1530px;
     }
 </style>

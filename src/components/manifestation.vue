@@ -1,14 +1,14 @@
 <template>
-        <div class="div grey elevation-5" v-on:click="GoEvent()">
-            <v-card class ="card">
-                <v-card-title class="title">{{event_name}}</v-card-title>
-                <v-card-text>
-                    <span class="img_container">
-                        <img :src="event_image">
-                    </span>
-                </v-card-text>
-            </v-card>
-        </div>
+    <div class="div grey elevation-5" v-on:click="GoEvent()">
+        <v-card class ="card">
+            <v-card-title class="title">{{event_name}}</v-card-title>
+            <v-card-text>
+                <span class="img_container">
+                    <img :src="event_image">
+                </span>
+            </v-card-text>
+        </v-card>
+    </div>
 </template>
 
 <script>

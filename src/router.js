@@ -7,7 +7,7 @@ import Artiste from './views/Connexion.vue'
 import Intervenant from './views/Connexion.vue'
 import Inscription from './views/Inscription'
 import InfoEvent from './views/Info-Event'
-
+import Consultation from './views/Consultation'
 Vue.use(Router)
 
 export default new Router({
