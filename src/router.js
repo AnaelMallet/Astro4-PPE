@@ -16,39 +16,37 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
       component: Home
     },
     {
       path: '/connexion',
-      name: 'connexion',
       component: EnTantQue
     },
     {
       path: '/connexion/client',
-      name: 'client',
       component: Client
     },
     {
       path: '/connexion/artiste',
-      name: 'artiste',
       component: Artiste
     },
     {
       path: '/connexion/intervenant',
-      name: 'intervenant',
       component: Intervenant
     },
     {
       path: '/inscription',
-      name: 'inscription',
       component: Inscription
     },
     {
-      path: '/evenement',
       name: 'evenement',
+      path: '/evenement',
       component: InfoEvent,
       props: true
+    },
+    {
+      path: '/consultation',
+      component: Consultation
     }
   ]
 })

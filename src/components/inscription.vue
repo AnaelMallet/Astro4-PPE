@@ -51,8 +51,8 @@
                     ></v-text-field>
                 </v-form>
                 <div class="btn_place">
-                    <v-btn class="blue darken-4 white--text btn_conn" v-on:click="Register('register', name, first_name, phone, mail, login, password, age)" :disabled="!valid">S'inscrire</v-btn>
-                    <v-btn class="blue darken-4 white--text" v-on:click="GoMain()">Annuler</v-btn>
+                    <v-btn class="blue darken-4 white--text btn_conn" @click="Inscription('register', name, first_name, phone, mail, login, password, age)" :disabled="!valid">S'inscrire</v-btn>
+                    <v-btn class="blue darken-4 white--text" @click="GoMain">Annuler</v-btn>
                 </div>
             </div>
         </div>
@@ -139,14 +139,13 @@
                 this.$router.push('/')
             },
 
-            Register(action, name, first_name, phone, mail, login, password, age) {
+            Inscription(action, name, first_name, phone, mail, login, password, age) {
                 fetch('http://localhost/astro4/api.php?action=' + action + '&nom=' + name + '&prenom=' + first_name + '&phone=' + phone + '&mail=' + mail + '&login=' + login + '&password=' + password + '&age=' + age)
                 .then(response => {
-                    console.log(response)
                     return response.json()
-                })
+                })    
                 .then(data => {
-                    this.dialog = true
+                    this.dialog = data.register
                     this.register = data.register
                 })
             }

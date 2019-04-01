@@ -39,7 +39,7 @@
                 </v-card>
             </v-dialog>
         </v-toolbar>
-        <InfoEvent/>
+        <InfoEvent :Event_Name="this.Event_Name" :Event_Image="this.Event_Image" :Event_Resume="this.Event_Resume"/>
         <EnTete/>
     </v-app>
 </template>
@@ -51,8 +51,35 @@ import EnTete from '../components/en-tete'
 
 export default {
     components: {Header, InfoEvent, EnTete},
+    props: {
+        id: {
+            type: String
+        }
+    },
+
+    mounted() {
+        this.GetInfoEvent('GetInfoEvent', this.id)
+    },
+
+    methods: {
+        GetInfoEvent(action, id) {
+            fetch('http://localhost/astro4/api.php?action=' + action + '&EventID=' + id)
+            .then(response => {
+                return response.json()
+            })
+            .then((data) => {
+                this.Event_Name = data.InfoEvent[0].nom
+                this.Event_Image = data.InfoEvent[0].image
+                this.Event_Resume = data.InfoEvent[0].resume_event
+            })
+        }
+    },
+
     data () {
         return {
+            Event_Name: '',
+            Event_Image: '',
+            Event_Resume: '',
             dialog: false,
             BookMode: "payement",
             rules: {

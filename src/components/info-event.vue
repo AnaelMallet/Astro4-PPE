@@ -1,12 +1,12 @@
 <template>
     <v-app>
-        <h1 class = "name"></h1>
-        <div class = "image grey lighten-2">
-            <img/>
-        </div>
+        <h1 class = "name">{{Event_Name}}</h1>
+        <span class = "image grey lighten-2">
+            <img :src="Event_Image"/>
+        </span>
         <div class = "event_text">
             <p>
-                text de l'evenement
+                <textarea class="text_field" cols="60" rows="5" v-model="Event_Resume"></textarea>
             </p>
         </div>
         <div class = "event_comment">
@@ -24,6 +24,19 @@
 
 export default {
     components: {comment},
+    props: {
+        Event_Name: {
+            type: String
+        },
+
+        Event_Image: {
+            type: String
+        },
+
+        Event_Resume: {
+            type: String
+        }
+    }
 }
 </script>
 
@@ -32,10 +45,14 @@ export default {
         text-align: center;
         margin-top: 30px;
     }
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
     .image {
         margin: 0 auto;
-        height: 300px;
-        width: 300px;
         margin-top: 30px;
     }
 
@@ -44,6 +61,10 @@ export default {
         margin: 50px 100px 0 100px;
         height: 100px;
         border-top: 1px solid black;
+    }
+
+    .text_field {
+        margin-top: 20px;
     }
 
     .event_comment {

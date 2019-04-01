@@ -22,8 +22,8 @@
                     ></v-text-field>
                 </v-form>
                 <div class="btn_place">
-                    <v-btn class="blue darken-4 white--text btn_conn" :disabled="!valid" v-on:click="Login('login', login, mdp)">Se Connecter</v-btn>
-                    <v-btn class="blue darken-4 white--text" v-on:click="GoConn()">Annuler</v-btn>
+                    <v-btn class="blue darken-4 white--text btn_conn" :disabled="!valid" @click="Connexion('login', login , mdp)">Se Connecter</v-btn>
+                    <v-btn class="blue darken-4 white--text" @click="GoConn()">Annuler</v-btn>
                 </div>
             </div>
         </div>
@@ -80,27 +80,24 @@
                 this.$router.push('/')
             },
 
-            Login(action, login, password) {
+            Connexion(action, login, mdp) {
                 if (this.$route.path === "/connexion/client")
                 {
                     action += "_client"
-                    fetch('http://localhost/astro4/api.php?action=' + action + '&login=' + login + '&password=' + password)
+                    fetch('http://localhost/astro4/api.php?action=' + action + '&login=' + login + '&password=' + mdp)
                     .then(response => {
                         return response.json()
                     })
                     .then((data) => {
+                        console.log(data)
                         this.connexion = data.is_valid
                         this.connexion_state = data.non_valid_reason
                         if (this.connexion)
                         {
-                            if (this.$session.exists())
-                            {
-                                this.$session.destroy()
-                            }
-
                             this.$session.start()
                             this.$session.set('person', 'client')
                             this.$session.set('name', login)
+                            this.$session.set('id_pers', data.id_pers)
                         }
                     })
                 }
@@ -116,14 +113,10 @@
                         this.connexion_state = data.non_valid_reason
                         if (this.connexion)
                         {
-                            if (this.$session.exists())
-                            {
-                                this.$session.destroy()
-                            }
-
                             this.$session.start()
                             this.$session.set('person', 'artist')
                             this.$session.set('name', login)
+                            this.$session.set('id_pers', data.id_pers)
 
                         }
                     })
@@ -140,14 +133,10 @@
                         this.connexion_state = data.non_valid_reason
                         if (this.connexion)
                         {
-                            if (this.$session.exists())
-                            {
-                                this.$session.destory()
-                            }
-
                             this.$session.start()
                             this.$session.set('person', 'contributor')
                             this.$session.set('name', login)
+                            this.$session.set('id_pers', data.id_pers)
                         }
                     })
                 }

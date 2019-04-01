@@ -22,11 +22,20 @@
             event_image: {
                 type: String,
                 required: true
+            },
+
+            event_id: {
+                type: String,
+                required: true
             }
         },
         methods: {
             GoEvent() {
-                this.$router.push('/evenement')
+                this.$router.push({
+                path:"/evenement",
+                name: 'evenement',
+                params: {id: this.event_id}
+                })
             }
         }
     }

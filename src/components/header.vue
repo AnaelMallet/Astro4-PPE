@@ -30,6 +30,8 @@
 
 <script>
     import myContentDrawer from "@/components/drawer"
+    import consultationVue from './consultation.vue';
+    
     export default {
         components: {myContentDrawer},
         data() {
@@ -51,6 +53,10 @@
             Disconnect() {
                 this.$session.destroy()
                 this.disconnect = true
+                if (this.$route.path === "/consultation")
+                {
+                    this.$router.push('/')
+                }
             },
 
             GoMain() {

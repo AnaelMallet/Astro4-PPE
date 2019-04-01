@@ -9,7 +9,7 @@
             <v-btn small class="btn grey lighten-2" v-on:click="GetEventData('conf')">Conférences</v-btn>
         </v-toolbar>
         <div class="grey lighten-2 div">
-            <Manif v-for="(event, index) in events_data" :key="index" :event_name="event.nom" :event_image="event.image"/>
+            <Manif v-for="(event, index) in events_data" :key="index" :event_name="event.nom" :event_image="event.image" :event_id="event.id_event"/>
         </div>
         <EnTete/>
     </v-app>
