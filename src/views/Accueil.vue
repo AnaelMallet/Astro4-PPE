@@ -40,6 +40,7 @@
                     return response.json()
                 })
                 .then((data) => {
+                    console.log(data.event)
                     this.events_data = data.event
                 })
             }

@@ -7,14 +7,13 @@
 </template>
 
 <script>
- import Header from '../components/header'
+ import Header from '../components/Header'
     import Consultation from '../components/consultation'
     import EnTete from '../components/en-tete'
 
     export default {
-        components: {EnTete, Header, Consultation}
+        components: {EnTete, Header, Consultation}   
     }
-
 </script>
 
 

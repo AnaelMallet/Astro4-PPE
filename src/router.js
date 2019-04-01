@@ -8,6 +8,8 @@ import Intervenant from './views/Connexion.vue'
 import Inscription from './views/Inscription'
 import InfoEvent from './views/Info-Event'
 import Consultation from './views/Consultation'
+import Planning from './views/Planning'
+
 Vue.use(Router)
 
 export default new Router({
@@ -46,7 +48,13 @@ export default new Router({
     },
     {
       path: '/consultation',
-      component: Consultation
+      name: 'consultation',
+      component: Consultation      
+    },
+    {
+      path: '/planning',
+      name: 'planning',
+      component: Planning
     }
   ]
 })

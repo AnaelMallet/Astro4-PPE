@@ -1,7 +1,7 @@
 <template>
 <v-app>
     <Header/>
-    <v-toolbar class="blue darken-4">
+    <v-toolbar class="blue darken-4 elevation-12">
         <h1 class="white--text">Mes réservations</h1>
     </v-toolbar>
     <div class="grey lighten-2 div">
@@ -12,7 +12,7 @@
 
 <script>
 import Manif from '../components/manifestation'
-import Header from '../components/header'
+import Header from '../components/Header'
 
 export default {
     components: {Header, Manif},
