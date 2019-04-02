@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import Header from '../components/Header'
+    import Header from '../components/header'
     import Manif from '../components/manifestation'
     import EnTete from '../components/en-tete'
 

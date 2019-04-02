@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import Header from '../components/Header'
+    import Header from '../components/header'
     import EnTete from "../components/en-tete"
     import Planning from '../components/Planning'
     export default {
