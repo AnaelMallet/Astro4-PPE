@@ -4,11 +4,10 @@
             <myContentDrawer/>
         </v-navigation-drawer>
         <v-toolbar class="blue darken-4">
-            <v-toolbar-side-icon dark v-on:click="drawer = true" v-if="this.$session.exists()"></v-toolbar-side-icon><div class="white--text menu">{{this.$session.get('name')}}</div>
-            <v-btn small class ="grey lighten-2" v-on:click="Disconnect()" v-if="this.$session.exists()">Déconnexion</v-btn>
-            <v-btn small class ="grey lighten-2" v-on:click="GoConn()" v-else>Connexion</v-btn>
-            <v-btn small class ="grey lighten-2" v-on:click="GoInscr()" v-if="!this.$session.exists()">Inscription</v-btn>
-            <v-btn small class ="grey lighten-2 MainBtn" v-on:click="GoMain()" v-if="this.$route.path !== '/'">Accueil</v-btn>
+            <v-toolbar-side-icon dark @click="drawer = true" v-if="this.$session.exists()"></v-toolbar-side-icon><div class="white--text menu">{{this.$session.get('name')}}</div>
+            <v-btn small class ="grey lighten-2" @click="Disconnect" v-if="this.$session.exists()">Déconnexion</v-btn>
+            <v-btn small class ="grey lighten-2" @click="GoConn" v-else>Connexion</v-btn>
+            <v-btn small class ="grey lighten-2" @click="GoInscr" v-if="!this.$session.exists()">Inscription</v-btn>
         </v-toolbar>
         <div>
             <v-parallax height="250"
@@ -30,7 +29,6 @@
 
 <script>
     import myContentDrawer from "@/components/drawer"
-    import consultationVue from './consultation.vue';
     
     export default {
         components: {myContentDrawer},
@@ -53,7 +51,7 @@
             Disconnect() {
                 this.$session.destroy()
                 this.disconnect = true
-                if (this.$route.path === "/consultation")
+                if (this.$route.path === "/consultation" || this.$route.path === "/planning")
                 {
                     this.$router.push('/')
                 }

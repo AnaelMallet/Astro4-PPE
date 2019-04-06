@@ -1,5 +1,5 @@
 <template>
-    <div class="div grey elevation-5" v-on:click="GoEvent()">
+    <div class="div grey elevation-5" @click="GoEvent">
         <v-card class ="card">
             <v-card-title class="title">{{event_name}}</v-card-title>
             <v-card-text>
@@ -27,6 +27,11 @@
             event_id: {
                 type: String,
                 required: true
+            },
+
+            Consulted: {
+                type:Boolean,
+                default: false
             }
         },
         methods: {
@@ -34,7 +39,7 @@
                 this.$router.push({
                 path:"/evenement",
                 name: 'evenement',
-                params: {id: this.event_id}
+                params: {id: this.event_id, Reserved: this.Consulted}
                 })
             }
         }

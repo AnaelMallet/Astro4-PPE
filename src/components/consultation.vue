@@ -1,24 +1,23 @@
 <template>
 <v-app>
-    <Header/>
     <v-toolbar class="blue darken-4 elevation-12">
         <h1 class="white--text">Mes réservations</h1>
     </v-toolbar>
     <div class="grey lighten-2 div">
-        <Manif v-for="(event, i) in event_data" :key="i" :event_name="event.nom" :event_image="event.image" :event_id="event.id"/>
+        <Manif v-for="(event, i) in event_data" :key="i" :event_name="event.nom" :event_image="event.image" :event_id="event.id" :Consulted="IsConsultation"/>
     </div>
 </v-app>
 </template>
 
 <script>
 import Manif from '../components/manifestation'
-import Header from '../components/Header'
 
 export default {
-    components: {Header, Manif},
+    components: {Manif},
     data(){
         return{
             event_data:[],
+            IsConsultation: true,
         }
     },
     mounted() {
@@ -39,7 +38,6 @@ export default {
                 return response.json()
             })
             .then((data) => {
-                console.log(data.reservation)
                 this.event_data = data.reservation
             })
         }

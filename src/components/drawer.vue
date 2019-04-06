@@ -30,30 +30,66 @@ export default {
     },
     methods: {
         ListElement() {
-            if (this.$session.get('person') === 'client')
+            if (this.$route.path === '/')
             {
-                this.menu_element = [
-                    {icon: "event", text:"Évenement réservé", action:"/consultation"},
-                    {icon: "event", text:"planning", action:"/planning"},
-                    {icon: "chat",text:"Mes commentaires", action:"/comment_list"},
-                ]
-            }
-            else
-            {
-                if (this.$session.get('person') === 'artist')
+                if (this.$session.get('person') === 'client')
                 {
                     this.menu_element = [
+                        {icon: "event", text:"Évenement réservé", action:"/consultation"},
                         {icon: "event", text:"planning", action:"/planning"},
+                        {icon: "chat",text:"Mes commentaires", action:"/comment_list"},
                     ]
                 }
                 else
                 {
-                    if (this.$session.get('person') === 'contributor')
+                    if (this.$session.get('person') === 'artist')
                     {
                         this.menu_element = [
                             {icon: "event", text:"planning", action:"/planning"},
-                            {icon: "chat",text:"Mes commentaires", action:"/comment_list"},
                         ]
+                    }
+                    else
+                    {
+                        if (this.$session.get('person') === 'contributor')
+                        {
+                            this.menu_element = [
+                                {icon: "event", text:"planning", action:"/planning"},
+                                {icon: "chat",text:"Mes commentaires", action:"/comment_list"},
+                            ]
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (this.$session.get('person') === 'client')
+                {
+                    this.menu_element = [
+                        {icon: "event", text:"Évenement réservé", action:"/consultation"},
+                        {icon: "event", text:"planning", action:"/planning"},
+                        {icon: "chat",text:"Mes commentaires", action:"/comment_list"},
+                        {icon: "home", text: "Accueil", action: "/"},
+                    ]
+                }
+                else
+                {
+                    if (this.$session.get('person') === 'artist')
+                    {
+                        this.menu_element = [
+                            {icon: "event", text:"planning", action:"/planning"},
+                            {icon: "home", text: "Accueil", action: "/"},
+                        ]
+                    }
+                    else
+                    {
+                        if (this.$session.get('person') === 'contributor')
+                        {
+                            this.menu_element = [
+                                {icon: "event", text:"planning", action:"/planning"},
+                                {icon: "chat",text:"Mes commentaires", action:"/comment_list"},
+                                {icon: "home", text: "Accueil", action: "/"},
+                            ]
+                        }
                     }
                 }
             }

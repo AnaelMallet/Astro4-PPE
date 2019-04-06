@@ -23,7 +23,7 @@
                 </v-form>
                 <div class="btn_place">
                     <v-btn class="blue darken-4 white--text btn_conn" :disabled="!valid" @click="Connexion('login', login , mdp)">Se Connecter</v-btn>
-                    <v-btn class="blue darken-4 white--text" @click="GoConn()">Annuler</v-btn>
+                    <v-btn class="blue darken-4 white--text" @click="GoConn">Annuler</v-btn>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
             <v-card>
                 <v-card-title v-if="connexion_state === 'wrong' || connexion_state === 'not_client' || connexion_state === 'not_artist' || connexion_state === 'not_contributor'" class="red lighten-1">
                     <h1>Erreur</h1>
-                    <v-btn class="grey lighten-2 close-btn" v-on:click="dialog = false">Réessayer</v-btn>
+                    <v-btn class="grey lighten-2 close-btn" @click="dialog = false">Réessayer</v-btn>
                 </v-card-title>
                 <v-card-title v-else class="green">
                     <h1>Vous êtes connecté</h1>
@@ -44,7 +44,7 @@
                     <h3 v-else>bienvenue</h3>
                 </v-card-text>
                 <v-card-actions v-if="connexion_state === ''">
-                    <v-btn class="grey lighten-2 close-btn" v-on:click="GoMain()">Revenir au menu</v-btn>
+                    <v-btn class="grey lighten-2 close-btn" @click="GoMain">Revenir au menu</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+
     export default {
         data: () => ({
             pwd: false,
@@ -89,7 +90,6 @@
                         return response.json()
                     })
                     .then((data) => {
-                        console.log(data)
                         this.connexion = data.is_valid
                         this.connexion_state = data.non_valid_reason
                         if (this.connexion)
@@ -104,7 +104,7 @@
                 if (this.$route.path === "/connexion/artiste")
                 {
                     action += "_artiste"
-                    fetch('http://localhost/astro4/api.php?action=' + action + '&login=' + login + '&password=' + password)
+                    fetch('http://localhost/astro4/api.php?action=' + action + '&login=' + login + '&password=' + mdp)
                     .then(response => {
                         return response.json()
                     })
@@ -124,7 +124,7 @@
                 if (this.$route.path === "/connexion/intervenant")
                 {
                     action += "_intervenant"
-                    fetch('http://localhost/astro4/api.php?action=' + action + '&login=' + login + '&password=' + password)
+                    fetch('http://localhost/astro4/api.php?action=' + action + '&login=' + login + '&password=' + mdp)
                     .then(response => {
                         return response.json()
                     })

@@ -1,11 +1,11 @@
 <template>
     <v-app>
-        <header/>
+        <Header/>
     </v-app>
 </template>
 
 <script>
-    import Header from '@/components/Header'
+    import Header from './components/header'
     import EnTete from "./components/en-tete";
     export default {
         name: 'app',

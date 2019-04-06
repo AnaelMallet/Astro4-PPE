@@ -71,7 +71,7 @@
                     </v-form>
                 </v-card-text>
                 <v-card-actions v-if="register">
-                    <v-btn class="grey lighten-2 close-btn" v-on:click="GoMain()">Revenir au menu</v-btn>
+                    <v-btn class="grey lighten-2 close-btn" @click="GoMain">Revenir au menu</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -93,6 +93,7 @@
             pwd: false,
             register: false,
             checkbox: false,
+            HashedPassword: "",
             NameRules: [
                 value => !!value || 'Valeur requise'
             ],
